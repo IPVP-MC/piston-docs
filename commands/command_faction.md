@@ -1,4 +1,4 @@
-# Factions
+# Faction
 **Syntax**: `/factions <subcommand> [opts...]` \
 **Aliases**: f, fac, factions, team, teams, t, group, groups, g
 
