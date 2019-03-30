@@ -65,7 +65,7 @@ Faction related sub-commands
         - `piston.command.factions.show.announcement`
         - `piston.command.factions.toggleflag`
 
-## Sub-commands
+## Player Sub-commands
 
 ### Accept
 **Description**: Accept a join request from a faction \
@@ -1057,3 +1057,366 @@ Sent to faction:
   * Parameter 1: 
     * **Description**: amount withdrawn
     * **Type**: integer
+    
+## Staff Sub-commands
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Chatspy
+**Description**: Spy on the chat of a faction \
+**Usage**: `/faction chatspy <list|add|remove> <faction>` \
+**Permission**: `piston.command.factions.chatspy`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| list       | Show list of factions      | string      | true     |  n/a    |
+| add        | Add a faction to spy on    | string      | true     |  n/a    |
+| remove     | Remove a spied on faction  | string      | true     |  n/a    |
+| faction    | Name of faction            | string      | true     |  n/a    |
+
+#### Messages
+Sent to command sender:
+* `command.faction.staff.chatspy.invalid`
+  * **Condition**: No faction provided
+* `command.faction.staff.chatspy.list`
+  * Parameter 0: 
+    * **Description**: list of factions
+    * **Type**: string
+* `command.faction.staff.chatspy.add`
+  * Parameter 0: 
+    * **Description**: name of faction
+    * **Type**: string
+* `command.faction.staff.chatspy.remove`
+  * Parameter 0: 
+    * **Description**: name of faction
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Claimfor
+**Description**: Receive a claim wand or claim land for another faction \
+**Usage**: `/faction claimfor [faction]` \
+**Permission**: `piston.command.factions.claimfor`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| faction    | Name of faction            | string      | false    |  n/a    |
+
+#### Messages
+Sent to command sender:
+* `command.faction.claim.inv`
+  * **Condition**: No inventory space for claim wand
+* `command.faction.claim.claiming`
+  * **Condition**: Already claiming
+* `command.faction.staff.claimfor.selection`
+  * **Condition**: Incomplete selection
+* `command.faction.staff.claimfor.success`
+  * Parameter 0: 
+    * **Description**: name of faction
+    * **Type**: string
+
+[//]: <> (-----------------------------------------------------------------)
+
+### Clearclaims
+**Description**: Clear the claims of a faction \
+**Usage**: `/faction clearclaims <faction>` \
+**Permission**: `piston.command.factions.clearclaims`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| faction    | Name of faction            | string      | true     |  n/a    |
+
+#### Messages
+Sent to command sender:
+* `command.faction.staff.clearclaims.success`
+  * Parameter 0: 
+    * **Description**: name of faction
+    * **Type**: string
+    
+Sent to faction:
+* `command.faction.staff.clearclaims.notify`
+  * Parameter 0: 
+    * **Description**: name of command sender
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Clearallclaims
+**Description**: Clear the claims of all facitons \
+**Usage**: `/faction clearallclaims` \
+**Permission**: `piston.command.factions.clearallclaims`
+
+#### Messages
+Sent to command sender:
+* `command.error.console`
+  * **Condition**: Must be console
+
+Broadcast to server:
+* `command.faction.staff.clearallclaims.notify`
+  * Parameter 0: 
+    * **Description**: name of command sender
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Forcedemote
+**Description**: Forces the demotion of a faction member \
+**Usage**: `/faction forcedemote <player>` \
+**Permission**: `piston.command.factions.forcedemote`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| player     | Name of player             | string      | true     |  n/a    |
+
+#### Messages
+Sent to command sender:
+* `command.faction.staff.forcerank.success`
+  * Parameter 0: 
+    * **Description**: name of target player
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: new role
+    * **Type**: string
+    
+Sent to faction:
+* `command.faction.staff.forcedemote.notify`
+  * Parameter 0: 
+    * **Description**: name of target player
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: new role
+    * **Type**: string
+  * Parameter 2: 
+    * **Description**: name of command sender
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Forcejoin
+**Description**: Forcefully join a faction \
+**Usage**: `/faction forcejoin <faction>` \
+**Permission**: `piston.command.factions.forcejoin`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| faction    | Name of faction            | string      | true     |  n/a    |
+
+#### Messages
+Sent to faction:
+* `command.faction.staff.forcejoin.notify`
+  * Parameter 0: 
+    * **Description**: name of command sender
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Forcekick
+**Description**: Forces the demotion of a faction member \
+**Usage**: `/faction forcekick <player>` \
+**Permission**: `piston.command.factions.forcekick`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| player     | Name of player             | string      | true     |  n/a    |
+
+#### Messages
+Sent to command sender:
+* `command.faction.staff.forcekick.success`
+  * Parameter 0: 
+    * **Description**: name of target player
+    * **Type**: string
+    
+Sent to faction:
+* `command.faction.staff.forcekick.notify`
+  * Parameter 0: 
+    * **Description**: name of target player
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: name of command sender
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Forcepromote
+**Description**: Forces the promotion of a faction member \
+**Usage**: `/faction forcepromote <player>` \
+**Permission**: `piston.command.factions.forcepromote`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| player     | Name of player             | string      | true     |  n/a    |
+
+#### Messages
+Sent to command sender:
+* `command.faction.staff.forcerank.success`
+  * Parameter 0: 
+    * **Description**: name of target player
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: new role
+    * **Type**: string
+    
+Sent to faction:
+* `command.faction.staff.forcepromote.notify`
+  * Parameter 0: 
+    * **Description**: name of target player
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: new role
+    * **Type**: string
+  * Parameter 2: 
+    * **Description**: name of command sender
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Forceunclaimhere
+**Description**: Forces land unclaim at current location \
+**Usage**: `/faction forceunclaimhere` \
+**Permission**: `piston.command.factions.forceunclaimhere`
+
+#### Messages
+Sent to command sender:
+* `command.faction.staff.forceunclaimhere.nothing`
+  * **Condition**: No claim at location
+* `command.faction.staff.forceunclaimhere.nothing`
+  * Parameter 0: 
+    * **Description**: name of faction
+    * **Type**: string
+    
+Sent to faction:
+* `command.faction.unclaim.remove`
+  * Parameter 0: 
+    * **Description**: name of command sender
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: static value
+    * **Value**: `1`
+    * **Type**: integer
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Remove
+**Description**: Removes a faction \
+**Usage**: `/faction remove <faction>` \
+**Permission**: `piston.command.factions.remove`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| faction    | Name of faction            | string      | true     |  n/a    |
+
+#### Messages
+Broadcast to server:
+* `command.faction.staff.remove.notify`
+  * Parameter 0: 
+    * **Description**: name of faction
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: name of command sender
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Setdtr
+**Description**: Sets the dtr of a faction \
+**Usage**: `/faction setdtr <faction> <value> <reason>` \
+**Aliases**: dtr, sdtr \
+**Permission**: `piston.command.factions.setdtr`
+
+#### Parameters
+| Parameter  | Description                | Type        | Required | Default |
+| ---------- | -------------------------- | ----------- | -------- | ------- |
+| faction    | Name of faction            | string      | true     |  n/a    |
+| value      | New dtr (-5 <= n <= 32)    | decimal     | true     |  n/a    |
+| reason     | Reason for change          | string      | true     |  n/a    |
+
+#### Messages
+Broadcast to server:
+* `command.faction.staff.setdtr.notify`
+  * Parameter 0: 
+    * **Description**: name of command sender
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: name of faction
+    * **Type**: string
+  * Parameter 2: 
+    * **Description**: new dtr
+    * **Type**: decimal
+  * Parameter 3: 
+    * **Description**: reason for change
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Setfreeze
+**Description**: Sets the dtr freeze of a faction \
+**Usage**: `/faction setdtr <faction> <seconds> <reason>` \
+**Aliases**: setdtrregen, dtrregen, dtregen, setdtregen, sdtrregen, sdr, regen, freeze, setdtrfreeze \
+**Permission**: `piston.command.factions.setdtrregen`
+
+#### Parameters
+| Parameter  | Description                    | Type        | Required | Default |
+| ---------- | ------------------------------ | ----------- | -------- | ------- |
+| faction    | Name of faction                | string      | true     |  n/a    |
+| seconds    | Seconds to freeze for (n >= 0) | integer     | true     |  n/a    |
+| reason     | Reason for change              | string      | true     |  n/a    |
+
+#### Messages
+Broadcast to server:
+* `command.faction.staff.setfreeze.notify`
+  * Parameter 0: 
+    * **Description**: name of command sender
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: name of faction
+    * **Type**: string
+  * Parameter 2: 
+    * **Description**: time frozen for
+    * **Type**: string
+  * Parameter 3: 
+    * **Description**: reason for change
+    * **Type**: string
+    
+[//]: <> (-----------------------------------------------------------------)
+
+### Toggleflag
+**Description**: Toggles a boolean flag on a faction \
+**Usage**: `/faction toggleflag <faction> <flag>` \
+**Permission**: `piston.command.factions.toggleflag`
+
+#### Parameters
+| Parameter  | Description                    | Type        | Required | Default |
+| ---------- | ------------------------------ | ----------- | -------- | ------- |
+| faction    | Name of faction                | string      | true     |  n/a    |
+| flag       | Flag to toggle                 | string      | true     |  n/a    |
+
+#### Flags
+Used faction flags:
+* `SAFEZONE`
+* `SPECIAL`
+* `GLOWSTONE`
+* `DENY_PVP_TIMER`
+
+#### Messages
+Broadcast to server:
+* `command.faction.staff.toggleflag.notify`
+  * Parameter 0: 
+    * **Description**: name of command sender
+    * **Type**: string
+  * Parameter 1: 
+    * **Description**: flag
+    * **Type**: string
+  * Parameter 2: 
+    * **Description**: name of faction
+    * **Type**: string
+  * Parameter 3: 
+    * **Description**: new state
+    * **Type**: boolean
